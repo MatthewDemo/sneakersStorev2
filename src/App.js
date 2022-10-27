@@ -15,11 +15,6 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    // fetch('https://6353e463ccce2f8c02feb63d.mockapi.io/items').then(res => {
-    //   return res.json()
-    // }).then(json => {
-    //   setItems(json)
-    // })
     axios.get('https://6353e463ccce2f8c02feb63d.mockapi.io/items').then(res => {
       setItems(res.data)
     });
@@ -29,7 +24,6 @@ function App() {
     axios.get('https://6353e463ccce2f8c02feb63d.mockapi.io/favorites').then(res => {
       setFavorites(res.data)
     })
-
   }, []);
 
 
@@ -60,12 +54,10 @@ function App() {
     setSearchValue(event.target.value)
   }
 
-
   return (
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
       <Header onClickCart={() => setCartOpened(true)} />
-
 
       <Routes>
         <Route path="/" element={<Home
@@ -83,8 +75,6 @@ function App() {
           />}
         />
       </Routes>
-
-
     </div>
   );
 }
